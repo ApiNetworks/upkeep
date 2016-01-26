@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Upkeep.Contracts.Constants
+namespace Upkeep.Shell.Infrastructure.Constatnts
 {
     public static class WindowNames
     {

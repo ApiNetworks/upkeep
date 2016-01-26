@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Upkeep.Contracts.Constants;
+using Upkeep.Shell.Infrastructure.Constatnts;
 
 namespace Upkeep.Shell
 {
