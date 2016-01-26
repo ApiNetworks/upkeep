@@ -7,8 +7,10 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         ResizeMode="CanResizeWithGrip"
-        GlowBrush="{DynamicResource AccentColorBrush}"
-        Title="MainWindow" Height="350" Width="525">
+        BorderThickness="0" 
+        GlowBrush="SlateGray"
+        WindowTransitionsEnabled="False"
+        Title="UPKEEP" Height="350" Width="525">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button Content="Settings" />
@@ -17,6 +19,5 @@
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     <Grid>
-        
     </Grid>
 </Controls:MetroWindow>
