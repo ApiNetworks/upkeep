@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:Upkeep.Shell"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
+        ResizeMode="CanResizeWithGrip"
+        GlowBrush="{DynamicResource AccentColorBrush}"
         Title="MainWindow" Height="350" Width="525">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
