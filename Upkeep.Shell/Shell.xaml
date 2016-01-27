@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Upkeep.Shell"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
         ResizeMode="CanResizeWithGrip"
         BorderThickness="0" 
@@ -13,11 +14,25 @@
         Title="UPKEEP" Height="350" Width="525">
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button Content="Settings" />
-            <Button Content="About" />
-            <Button Content="Help" />
+            <ToggleButton Content="Settings" IsChecked="{Binding ElementName=SettingsFlyout, Path=IsOpen}" Cursor="Hand"/>
+            <ToggleButton Content="About" IsChecked="{Binding ElementName=AboutFlyout, Path=IsOpen}" Cursor="Hand"/>
+            <ToggleButton Content="Help" IsChecked="{Binding ElementName=HelpFlyout, Path=IsOpen}" Cursor="Hand"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
+    <!-- Flyouts -->
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout x:Name="SettingsFlyout" Header="Flyout" Position="Right" Width="300" Theme="Light" IsModal="True">
+                <ContentControl Name="SettingsRegionContentControl" prism:RegionManager.RegionName="SettingsRegion" />
+            </Controls:Flyout>
+            <Controls:Flyout x:Name="AboutFlyout" Header="Flyout" Position="Right" Width="300" Theme="Light" IsModal="True">
+                <ContentControl Name="AboutRegionContentControl" prism:RegionManager.RegionName="AboutRegion" />
+            </Controls:Flyout>
+            <Controls:Flyout x:Name="HelpFlyout" Header="Flyout" Position="Right" Width="300" Theme="Light" IsModal="True">
+                <ContentControl Name="HelpRegionContentControl" prism:RegionManager.RegionName="HelpRegion" />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">

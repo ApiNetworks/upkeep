@@ -1,8 +1,7 @@
 ﻿<Application x:Class="Upkeep.Shell.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Upkeep.Shell"
-             StartupUri="Shell.xaml">
+             xmlns:local="clr-namespace:Upkeep.Shell">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

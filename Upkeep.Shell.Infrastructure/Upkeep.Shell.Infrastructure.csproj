@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseModule.cs" />
+    <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="Constatnts\WindowNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
