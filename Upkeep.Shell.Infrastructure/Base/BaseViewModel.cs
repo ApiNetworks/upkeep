@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Upkeep.Shell.Infrastructure.Base
 {
-    public abstract class ViewModelBase : BindableBase
+    public abstract class BaseViewModel : BindableBase
     {
-        public ViewModelBase()
+        public BaseViewModel()
         {
             this.Container = Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<IUnityContainer>();
             this.RegionManager = Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<IRegionManager>();

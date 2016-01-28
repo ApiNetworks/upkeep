@@ -1,13 +1,16 @@
 ﻿using Microsoft.Practices.Unity;
+using Prism.Modularity;
 using Prism.Regions;
 using Prism.Unity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Upkeep.Shell.Infrastructure.Constatnts;
+using Upkeep.Shell.Utils;
 
 namespace Upkeep.Shell
 {
@@ -23,6 +26,12 @@ namespace Upkeep.Shell
         {
             base.InitializeShell();
             Application.Current.MainWindow.Show();
+        }
+
+        protected override IModuleCatalog CreateModuleCatalog()
+        {
+            DynamicDirectoryModuleCatalog catalog = new DynamicDirectoryModuleCatalog(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Modules"));
+            return catalog;
         }
     }
 }
