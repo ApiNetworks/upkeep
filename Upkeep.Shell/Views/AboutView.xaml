@@ -4,10 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Upkeep.Shell.Views"
+             xmlns:model="clr-namespace:Upkeep.Shell.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
     <Grid>
-        <ListBox Margin="20" ItemsSource="{Binding RegionNames}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--<TreeView Grid.Row="2" ItemsSource="{Binding Regions}" ItemTemplate="{StaticResource RegionsTemplate}">
+        </TreeView>-->
+
+        <ListBox Margin="20" Grid.Row="0" ItemsSource="{Binding RegionNames}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
@@ -17,22 +28,15 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-
-        <ListBox ItemsSource="{Binding Books}" BorderBrush="{x:Null}">
+        <ListBox Margin="20" Grid.Row="1" ItemsSource="{Binding Regions}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Book.Name}" FontSize="12" FontWeight="Bold" />
-                        <ListBox ItemsSource="{Binding Authors}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" FontSize="10" />
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                        <TextBlock Text="{Binding RegionName}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
     </Grid>
 </UserControl>

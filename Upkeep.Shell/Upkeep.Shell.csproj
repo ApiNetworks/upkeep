@@ -71,6 +71,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\RegionInfoModel.cs" />
+    <Compile Include="Models\ViewInfoModel.cs" />
     <Compile Include="Utils\DynamicDirectoryModuleCatalog.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
