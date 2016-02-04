@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Upkeep.Shell"
+        xmlns:utils="clr-namespace:Upkeep.Shell.Utils" 
+        xmlns:FontAwesome="http://schemas.fontawesome.io/icons/"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
@@ -12,7 +14,137 @@
         GlowBrush="SlateGray"
         WindowTransitionsEnabled="False"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="UPKEEP" Height="350" Width="525">
+        Title="UPKEEP" Height="480" Width="640">
+
+    <Control.Resources>
+        <Style x:Key="AzureTabItem" TargetType="{x:Type TabItem}">
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <StackPanel>
+                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                                        Padding="10,2,20,2" 
+                                        BorderThickness="0,0,0,4" 
+                                        Margin="2,2,2,0"
+                                        SnapsToDevicePixels="True">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="{DynamicResource Gray5}"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Border.Style>
+                                <Label x:Name="root" FontSize="12">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Setter Property="Foreground">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="{DynamicResource BlackColor}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Label.Style>
+                                    <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" />
+                                </Label>
+                            </Border>
+                            <Canvas Height="10" Width="20" x:Name="arrow" Margin="20,0,0,0" HorizontalAlignment="Left" SnapsToDevicePixels="True">
+                                <Path Data="M 0 0 H 20 L 10 10 Z" StrokeThickness="0" Fill="{DynamicResource AccentColorBrush}"/>
+                            </Canvas>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="root" Property="Foreground">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource WhiteColor}" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource AccentColor}"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="border" Property="BorderBrush">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource AccentColor}"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="arrow" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="false">
+                                <Setter  TargetName="root" Property="Foreground">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource BlackColor}" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="arrow" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="root" Property="Foreground">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource WhiteColor}" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"></Setter>
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource AccentColor}"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="AzureNavTabItem" TargetType="TabItem">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="0,2,10,0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="MinWidth" Value="5" />
+            <Setter Property="MinHeight" Value="5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Label x:Name="root" FontSize="12" Margin="{TemplateBinding Margin}"
+                               FontWeight="SemiBold">
+                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" />
+                        </Label>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="root" Property="Foreground">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource AccentColor}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="false">
+                                <Setter  TargetName="root" Property="Foreground">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource Gray2}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger SourceName="root" Property="IsMouseOver" Value="True">
+                                <Setter  TargetName="root" Property="Foreground">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource AccentColor}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Control.Resources>
+
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <ToggleButton Content="Settings" IsChecked="{Binding ElementName=SettingsFlyout, Path=IsOpen}" Cursor="Hand"/>
@@ -35,35 +167,148 @@
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
     <Grid>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Organization">
-                    <MenuItem Header="_Manage users">
-                        <MenuItem.Icon>
-                            <Image />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="_New" />
-                    <MenuItem Header="_Open" />
-                    <MenuItem Header="_Save" />
-                    <Separator />
-                    <MenuItem Header="_Exit" />
-                </MenuItem>
-                <MenuItem Header="_Property">
-                    <MenuItem Header="_New" />
-                    <MenuItem Header="_Open" />
-                    <MenuItem Header="_Save" />
-                    <Separator />
-                    <MenuItem Header="_Exit" />
-                </MenuItem>
-                <MenuItem Header="_Contact">
-                    <MenuItem Header="_New" />
-                    <MenuItem Header="_Open" />
-                    <MenuItem Header="_Save" />
-                    <Separator />
-                    <MenuItem Header="_Exit" />
-                </MenuItem>
-            </Menu>
+        <DockPanel Background="WhiteSmoke">
+            <TabControl TabStripPlacement="Left" Padding="0" DockPanel.Dock="Left">
+                <TabItem Name="DashboardTab" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Vertical" Margin="10">
+                            <FontAwesome:ImageAwesome Icon="Dashboard" Width="48" Height="48" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Text="Dashboard" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <StackPanel Orientation="Vertical">
+
+                            <Menu DockPanel.Dock="Top">
+                                <MenuItem Header="_Organization">
+                                    <MenuItem Header="_Manage users">
+                                        <MenuItem.Icon>
+                                            <Image />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="_New" />
+                                    <MenuItem Header="_Open" />
+                                    <MenuItem Header="_Save" />
+                                    <Separator />
+                                    <MenuItem Header="_Exit" />
+                                </MenuItem>
+                                <MenuItem Header="_Property">
+                                    <MenuItem Header="_New" />
+                                    <MenuItem Header="_Open" />
+                                    <MenuItem Header="_Save" />
+                                    <Separator />
+                                    <MenuItem Header="_Exit" />
+                                </MenuItem>
+                                <MenuItem Header="_Contact">
+                                    <MenuItem Header="_New" />
+                                    <MenuItem Header="_Open" />
+                                    <MenuItem Header="_Save" />
+                                    <Separator />
+                                    <MenuItem Header="_Exit" />
+                                </MenuItem>
+                            </Menu>
+                            <TextBlock TextWrapping="WrapWithOverflow" Padding="0,0,0,30">
+                                    FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                            </TextBlock>
+
+                            <TabControl Padding="0" BorderThickness="1" BorderBrush="Azure">
+                                <TabControl.Resources>
+                                    <Style TargetType="TabItem" BasedOn="{StaticResource AzureTabItem}"/>
+                                </TabControl.Resources>
+                                <TabItem Header="HOME">
+                                    <TabControl>
+                                        <TabControl.Resources>
+                                            <Style TargetType="TabItem" BasedOn="{StaticResource AzureNavTabItem}"/>
+                                        </TabControl.Resources>
+                                        <TextBlock TextWrapping="WrapWithOverflow">
+                                    FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                        </TextBlock>
+                                    </TabControl>
+                                </TabItem>
+                                <TabItem Header="SOURCE CODE" BorderBrush="LightGreen">
+                                    <TabControl>
+                                        <TabControl.Resources>
+                                            <Style TargetType="TabItem" BasedOn="{StaticResource AzureNavTabItem}"/>
+                                        </TabControl.Resources>
+                                        <TextBlock TextWrapping="WrapWithOverflow">
+                                    FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                        </TextBlock>
+                                    </TabControl>
+                                </TabItem>
+                                <TabItem Header="DOCUMENTATION" BorderBrush="LightGreen">
+                                    <TabControl>
+                                        <TabControl.Resources>
+                                            <Style TargetType="TabItem" BasedOn="{StaticResource AzureNavTabItem}"/>
+                                        </TabControl.Resources>
+                                        <TextBlock TextWrapping="WrapWithOverflow">
+                                    FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                        </TextBlock>
+                                    </TabControl>
+                                </TabItem>
+                            </TabControl>
+
+                        </StackPanel>
+                    </TabItem.Content>
+                </TabItem>
+
+                <TabItem Name="PropertyTab">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Vertical" Margin="10">
+                            <FontAwesome:ImageAwesome Icon="Home" Width="48" Height="48" Foreground="CadetBlue" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Text="Properties" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <TextBlock TextWrapping="WrapWithOverflow">
+        FontSize property information goes here.
+                        </TextBlock>
+                    </TabItem.Content>
+                </TabItem>
+
+                <TabItem Name="ArchiveTab">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Vertical" Margin="10">
+                            <FontAwesome:ImageAwesome Icon="Archive" Width="48" Height="48" Foreground="CadetBlue" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Text="Archive" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <TextBlock TextWrapping="WrapWithOverflow">
+        FontSize property information goes here.
+                        </TextBlock>
+                    </TabItem.Content>
+                </TabItem>
+
+                <TabItem Name="UsersTab">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Vertical" Margin="10">
+                            <FontAwesome:ImageAwesome Icon="Users" Width="48" Height="48" Foreground="CadetBlue" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Text="Users" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <TextBlock TextWrapping="WrapWithOverflow">
+        FontSize property information goes here.
+                        </TextBlock>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl>
         </DockPanel>
     </Grid>
 </Controls:MetroWindow>
