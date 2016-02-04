@@ -166,7 +166,79 @@
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
-    <Grid>
+
+    <Grid Background="#FF423C3C">
+        <TabControl x:Name="tabControl" TabStripPlacement="Left" Margin="5,0,0,0" BorderThickness="2">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Grid>
+                                    <Border Name="Border" Background="#FF6E6C67" Margin="2,2,-6,0" BorderBrush="Black" BorderThickness="2,2,0,2" CornerRadius="5,0,0,5">
+                                        <ContentPresenter x:Name="ContentSite" ContentSource="Header" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,12,2" RecognizesAccessKey="True"/>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter TargetName="ContentSite" Property="Width" Value="30" />
+                                        <Setter TargetName="Border" Property="Background" Value="#FFD4D0C8" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="#FF6E6C67" />
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentPresenter Content="{TemplateBinding Content}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="270" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="#FFB9B7B0" />
+                    <Setter Property="Height" Value="90" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="FontFamily" Value="DokChampa" />
+                    <Setter Property="FontSize" Value="15" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="UseLayoutRounding" Value="False" />
+                </Style>
+                <Style x:Key="tabGrids">
+                    <Setter Property="Grid.Background" Value="#FFD4D0C8" />
+                    <Setter Property="Grid.Margin" Value="0" />
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Planner">
+                <Grid Style="{StaticResource tabGrids}"/>
+            </TabItem>
+            <TabItem Header="Section 2">
+                <Grid Style="{StaticResource tabGrids}"/>
+            </TabItem>
+            <TabItem Header="Section III">
+                <Grid Style="{StaticResource tabGrids}"/>
+            </TabItem>
+            <TabItem Header="Section 04">
+                <Grid Style="{StaticResource tabGrids}"/>
+            </TabItem>
+            <TabItem Header="Tools">
+                <Grid Style="{StaticResource tabGrids}"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+    <!--<Grid>
         <DockPanel Background="WhiteSmoke">
             <TabControl TabStripPlacement="Left" Padding="0" DockPanel.Dock="Left">
                 <TabItem Name="DashboardTab" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -310,5 +382,5 @@
                 </TabItem>
             </TabControl>
         </DockPanel>
-    </Grid>
+    </Grid>-->
 </Controls:MetroWindow>
