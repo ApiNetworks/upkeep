@@ -14,7 +14,7 @@
         GlowBrush="SlateGray"
         WindowTransitionsEnabled="False"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="UPKEEP" Height="480" Width="640">
+        Title="UPKEEP" Height="545" Width="587">
 
     <Control.Resources>
         <Style x:Key="AzureTabItem" TargetType="{x:Type TabItem}">
@@ -166,8 +166,166 @@
             </Controls:Flyout>
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
+    <Grid Background="#33119EDA">
+        <TabControl x:Name="tabControl" TabStripPlacement="Left" Margin="3,0,0,0" BorderThickness="1">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Grid>
+                                    <Border Name="Border" Background="#99119EDA" Margin="3,3,-6,0" BorderBrush="#FFFFFF" BorderThickness="2,2,0,2" CornerRadius="7,0,0,10">
+                                        <ContentPresenter x:Name="ContentSite" ContentSource="Header" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,2,12,2" RecognizesAccessKey="True"/>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter TargetName="ContentSite" Property="Width" Value="30" />
+                                        <Setter TargetName="Border" Property="Background" Value="#FFFFFF" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="#FF6E6C67" />
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentPresenter Content="{TemplateBinding Content}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="270" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="#FFB9B7B0" />
+                    <Setter Property="Height" Value="90" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="FontFamily" Value="DokChampa" />
+                    <Setter Property="FontSize" Value="15" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="UseLayoutRounding" Value="False" />
+                </Style>
+                <Style x:Key="tabGrids">
+                    <Setter Property="Grid.Background" Value="#FFFFFF" />
+                    <Setter Property="Grid.Margin" Value="0" />
+                    
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Planner">
+                <Grid Style="{StaticResource tabGrids}">
+                        <StackPanel Margin="20" Orientation="Vertical">
+                            <Menu DockPanel.Dock="Top">
+                                <MenuItem Header="_Organization">
+                                    <MenuItem Header="_Manage users">
+                                        <MenuItem.Icon>
+                                            <Image />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="_New" />
+                                    <MenuItem Header="_Open" />
+                                    <MenuItem Header="_Save" />
+                                    <Separator />
+                                    <MenuItem Header="_Exit" />
+                                </MenuItem>
+                                <MenuItem Header="_Property">
+                                    <MenuItem Header="_New" />
+                                    <MenuItem Header="_Open" />
+                                    <MenuItem Header="_Save" />
+                                    <Separator />
+                                    <MenuItem Header="_Exit" />
+                                </MenuItem>
+                                <MenuItem Header="_Contact">
+                                    <MenuItem Header="_New" />
+                                    <MenuItem Header="_Open" />
+                                    <MenuItem Header="_Save" />
+                                    <Separator />
+                                    <MenuItem Header="_Exit" />
+                                </MenuItem>
+                            </Menu>
+                            <TextBlock TextWrapping="WrapWithOverflow" Padding="0,0,0,30">
+                                    FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                            </TextBlock>
 
-    <Grid Background="#FF423C3C">
+                            <TabControl Padding="0" BorderThickness="1" BorderBrush="Azure">
+                                <TabControl.Resources>
+                                    <Style TargetType="TabItem" BasedOn="{StaticResource AzureTabItem}"/>
+                                </TabControl.Resources>
+                                <TabItem Header="HOME">
+                                    <TabControl>
+                                        <TabControl.Resources>
+                                            <Style TargetType="TabItem" BasedOn="{StaticResource AzureNavTabItem}"/>
+                                        </TabControl.Resources>
+                                        <TextBlock TextWrapping="WrapWithOverflow">
+                                    FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                        </TextBlock>
+                                    </TabControl>
+                                </TabItem>
+                                <TabItem Header="SOURCE CODE" BorderBrush="LightGreen">
+                                    <TabControl>
+                                        <TabControl.Resources>
+                                            <Style TargetType="TabItem" BasedOn="{StaticResource AzureNavTabItem}"/>
+                                        </TabControl.Resources>
+                                        <TextBlock TextWrapping="WrapWithOverflow">
+                                    FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                        </TextBlock>
+                                    </TabControl>
+                                </TabItem>
+                                <TabItem Header="DOCUMENTATION" BorderBrush="LightGreen">
+                                    <TabControl>
+                                        <TabControl.Resources>
+                                            <Style TargetType="TabItem" BasedOn="{StaticResource AzureNavTabItem}"/>
+                                        </TabControl.Resources>
+                                        <TextBlock TextWrapping="WrapWithOverflow">
+                                    FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                FontWeight property information goes here.
+                                        </TextBlock>
+                                    </TabControl>
+                                </TabItem>
+                            </TabControl>
+
+                        </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Section 2">
+                <Grid Style="{StaticResource tabGrids}"/>
+            </TabItem>
+            <TabItem Header="Section III">
+                <Grid Style="{StaticResource tabGrids}"/>
+            </TabItem>
+            <TabItem Header="Section 04">
+                <Grid Style="{StaticResource tabGrids}"/>
+            </TabItem>
+            <TabItem Header="Tools">
+                <Grid Style="{StaticResource tabGrids}"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+    <!--<Grid Background="#FF423C3C">
         <TabControl x:Name="tabControl" TabStripPlacement="Left" Margin="5,0,0,0" BorderThickness="2">
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabItem}">
@@ -237,7 +395,7 @@
                 <Grid Style="{StaticResource tabGrids}"/>
             </TabItem>
         </TabControl>
-    </Grid>
+    </Grid>-->
     <!--<Grid>
         <DockPanel Background="WhiteSmoke">
             <TabControl TabStripPlacement="Left" Padding="0" DockPanel.Dock="Left">
