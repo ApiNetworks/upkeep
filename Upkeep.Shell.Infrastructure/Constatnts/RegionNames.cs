@@ -11,5 +11,7 @@ namespace Upkeep.Shell.Infrastructure.Constatnts
         public static string SettingsRegionName = "SettingsRegion";
         public static string AboutRegionName = "AboutRegion";
         public static string HelpRegionName = "HelpRegion";
+        public static string TabRegionName = "TabRegion";
+        public static string QueryRegionName = "QueryRegion";
     }
 }

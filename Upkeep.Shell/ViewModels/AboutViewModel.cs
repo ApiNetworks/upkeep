@@ -30,6 +30,17 @@ namespace Upkeep.Shell.ViewModels
             return (from item in this.RegionManager.Regions select item.Name).ToList<string>();
         }
 
+        // TODO:
+        private void GetRegisteredViews()
+        {
+            List<string> regions = GetAvailableRegionNames();
+            foreach (string regionName in regions)
+            {
+                IRegion reg = RegionManager.Regions[regionName];
+                IViewsCollection col = reg.Views;
+            }
+        }
+
         private List<RegionInfo> GetRegionInfoModels()
         {
             List<RegionInfo> regions = new List<RegionInfo>();

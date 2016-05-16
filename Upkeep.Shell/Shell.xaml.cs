@@ -16,6 +16,9 @@ using MahApps.Metro.Controls;
 using Prism.Regions;
 using Upkeep.Shell.Infrastructure.Constatnts;
 using Upkeep.Shell.Views;
+using System.Windows.Forms;
+using System.Data;
+using RxDM.Entities.Queries;
 
 namespace Upkeep.Shell
 {
@@ -33,6 +36,8 @@ namespace Upkeep.Shell
                 SetRegionManager(regionManager, this.SettingsRegionContentControl, RegionNames.SettingsRegionName);
                 SetRegionManager(regionManager, this.AboutRegionContentControl, RegionNames.AboutRegionName);
                 SetRegionManager(regionManager, this.HelpRegionContentControl, RegionNames.HelpRegionName);
+                SetRegionManager(regionManager, this.TabRegionContentControl, RegionNames.TabRegionName);
+                SetRegionManager(regionManager, this.QueryRegionContentControl, RegionNames.QueryRegionName);
 
                 RegisterShellViews(regionManager);
             }
