@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Upkeep.Modules.DatabaseExpolorer.ViewModels
+namespace Upkeep.Modules.DatabaseExplorer.ViewModels
 {
     public class GenericObject
     {

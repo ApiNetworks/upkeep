@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Upkeep.Modules.DatabaseExpolorer.ViewModels
+namespace Upkeep.Modules.DatabaseExplorer.ViewModels
 {
     public class GenericProperty : INotifyPropertyChanged
     {

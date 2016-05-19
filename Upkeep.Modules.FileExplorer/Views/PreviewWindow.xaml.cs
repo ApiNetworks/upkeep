@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.SimpleChildWindow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,21 +13,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Upkeep.Modules.DatabaseExpolorer.ViewModels;
 
-namespace Upkeep.Modules.DatabaseExpolorer.Views
+namespace Upkeep.Modules.FileExplorer.Views
 {
     /// <summary>
-    /// Interaction logic for TableExplorerView.xaml
+    /// Interaction logic for PreviewWindow.xaml
     /// </summary>
-    public partial class TableExplorerView : UserControl
+    public partial class PreviewWindow : ChildWindow
     {
-        public TableExplorerView()
+        public PreviewWindow()
         {
             InitializeComponent();
+        }
 
-            TableExplorerViewModel model = new TableExplorerViewModel();
-            this.DataContext = model;
+        private void CloseSec_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

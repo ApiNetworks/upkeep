@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Upkeep.Modules.DatabaseExpolorer.Views;
+using Upkeep.Modules.DatabaseExplorer.Views;
 using Upkeep.Shell.Infrastructure.Base;
 
-namespace Upkeep.Modules.DatabaseExpolorer
+namespace Upkeep.Modules.DatabaseExplorer
 {
     public class DbExplorerModule : BaseModule
     {

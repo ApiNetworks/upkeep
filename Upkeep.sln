@@ -25,7 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxDM.Entities", "..\RxDM\Rx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxDM.Tests", "..\RxDM\RxDM.Tests\RxDM.Tests.csproj", "{214E1D94-4664-484B-AAA9-6AB0E0542D47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upkeep.Modules.DatabaseExpolorer", "Upkeep.Modules.DatabaseExpolorer\Upkeep.Modules.DatabaseExpolorer.csproj", "{7E50BFE8-22AE-43B5-BD1A-F3C42E3099A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upkeep.Modules.FileExplorer", "Upkeep.Modules.FileExplorer\Upkeep.Modules.FileExplorer.csproj", "{F8F03E58-C965-43D1-BFC9-C0497BDB5FFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upkeep.Modules.DatabaseExplorer", "Upkeep.Modules.DatabaseExplorer\Upkeep.Modules.DatabaseExplorer.csproj", "{7E50BFE8-22AE-43B5-BD1A-F3C42E3099A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +102,12 @@ Global
 		{214E1D94-4664-484B-AAA9-6AB0E0542D47}.Release|Any CPU.Build.0 = Release|Any CPU
 		{214E1D94-4664-484B-AAA9-6AB0E0542D47}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
 		{214E1D94-4664-484B-AAA9-6AB0E0542D47}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
+		{F8F03E58-C965-43D1-BFC9-C0497BDB5FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F03E58-C965-43D1-BFC9-C0497BDB5FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F03E58-C965-43D1-BFC9-C0497BDB5FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F03E58-C965-43D1-BFC9-C0497BDB5FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F03E58-C965-43D1-BFC9-C0497BDB5FFB}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F03E58-C965-43D1-BFC9-C0497BDB5FFB}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
 		{7E50BFE8-22AE-43B5-BD1A-F3C42E3099A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E50BFE8-22AE-43B5-BD1A-F3C42E3099A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E50BFE8-22AE-43B5-BD1A-F3C42E3099A5}.Release|Any CPU.ActiveCfg = Release|Any CPU

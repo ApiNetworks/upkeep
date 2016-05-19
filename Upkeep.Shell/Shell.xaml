@@ -225,30 +225,11 @@
                 </TabControl.Resources>
                 <TabItem Header="Files">
                     <Grid Style="{StaticResource tabGrids}">
-                        <StackPanel Margin="10,0,10,0" Orientation="Vertical">
-                            <Menu DockPanel.Dock="Top">
-                                <MenuItem Header="_Folder">
-                                    <MenuItem Header="_Manage users">
-                                        <MenuItem.Icon>
-                                            <Image />
-                                        </MenuItem.Icon>
-                                    </MenuItem>
-                                    <MenuItem Header="_Open" />
-                                    <Separator />
-                                    <MenuItem Header="_Exit" />
-                                </MenuItem>
-                            </Menu>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                            </Grid>
-                        </StackPanel>
+                        <ContentControl Name="FileExplorerRegionContentControl" prism:RegionManager.RegionName="FileExplorerRegion" />
                     </Grid>
                 </TabItem>
                 <TabItem Header="Schema">
-                    <Grid Style="{StaticResource tabGrids}">
+                    <Grid Style="{StaticResource tabGrids}" Margin="0">
                         <TextBlock TextWrapping="WrapWithOverflow" Padding="0,0,0,30" FontWeight="Normal" FontFamily="Arial" FontSize="14">
                                     Database description goes here.
                         </TextBlock>

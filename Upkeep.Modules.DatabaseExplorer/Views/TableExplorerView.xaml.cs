@@ -12,26 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Upkeep.Modules.DatabaseExpolorer.ViewModels;
+using Upkeep.Modules.DatabaseExplorer.ViewModels;
 
-namespace Upkeep.Modules.DatabaseExpolorer.Views
+namespace Upkeep.Modules.DatabaseExplorer.Views
 {
     /// <summary>
-    /// Interaction logic for QueryExplorerView.xaml
+    /// Interaction logic for TableExplorerView.xaml
     /// </summary>
-    public partial class QueryExplorerView : UserControl
+    public partial class TableExplorerView : UserControl
     {
-        public QueryExplorerView()
+        public TableExplorerView()
         {
             InitializeComponent();
 
-            QueryExplorerViewModel model = new QueryExplorerViewModel();
+            TableExplorerViewModel model = new TableExplorerViewModel();
             this.DataContext = model;
-        }
-
-        private void ExecuteQuery_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
