@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Upkeep.Modules.FileExplorer.Controls;
+using Upkeep.Modules.FileExplorer.Models;
+using Upkeep.Modules.FileExplorer.ViewModels;
 
 namespace Upkeep.Modules.FileExplorer.Views
 {
@@ -23,19 +25,19 @@ namespace Upkeep.Modules.FileExplorer.Views
     public partial class FileExplorerView : UserControl
     {
         private object dummyNode = null;
+        FolderExplorerViewModel viewModel;
 
         public FileExplorerView()
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(ControlWindow_Loaded);
 
-            //this.DataContext = model;
+            viewModel = new FolderExplorerViewModel();
+            this.DataContext = viewModel;
         }
 
         private void ControlWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            SelectedFiles = new Dictionary<string, FileInfo>();
-
             foreach (string s in Directory.GetLogicalDrives())
             {
                 TreeViewItem item = new TreeViewItem();
@@ -104,22 +106,32 @@ namespace Upkeep.Modules.FileExplorer.Views
 
         public string SelectedImagePath { get; private set; }
 
-        public Dictionary<string, FileInfo> SelectedFiles { get; set; }
-
         public void PopulateFileList()
         {
-            if(!String.IsNullOrEmpty(SelectedImagePath) && Directory.Exists(SelectedImagePath))
+            if (!String.IsNullOrEmpty(SelectedImagePath) && Directory.Exists(SelectedImagePath))
             {
-                foreach (string s in Directory.GetFiles(SelectedImagePath, "*.eif2"))
+                foreach (string filePath in Directory.GetFiles(SelectedImagePath, "*.eif2"))
                 {
-                    FileInfo file = new FileInfo(s);
-                    if (!SelectedFiles.Keys.Contains(file.FullName))
+                    FileInfo file = new FileInfo(filePath);
+                    FileInfoModel fileModel = new FileInfoModel
                     {
-                        this.SelectedFiles.Add(file.FullName, file);
-                        this.FileList.Items.Add(file);
-                        this.Btn_ClearFiles.IsEnabled = true;
-                        this.Btn_LoadFiles.IsEnabled = true;
+                        FullName = file.FullName,
+                        Directory = file.DirectoryName,
+                        Extension = file.Extension,
+                        Length = file.Length,
+                        Name = file.Name
+                    };
+
+                    if (viewModel.SelectedFiles.Any(x => x.FullName.Equals(fileModel.FullName)) == false)
+                    {
+                        viewModel.SelectedFiles.Add(fileModel);
+
+                        // Run upload
+                        fileModel.StartAsync();
                     }
+
+                    this.Btn_ClearFiles.IsEnabled = true;
+                    this.Btn_LoadFiles.IsEnabled = true;
                 }
             }
         }
@@ -131,21 +143,19 @@ namespace Upkeep.Modules.FileExplorer.Views
 
         private void Click_ClearFiles(object sender, RoutedEventArgs e)
         {
-            this.SelectedFiles = new Dictionary<string, FileInfo>();
-            this.FileList.Items.Clear();
-
+            this.viewModel.SelectedFiles.Clear();
             this.Btn_ClearFiles.IsEnabled = false;
             this.Btn_LoadFiles.IsEnabled = false;
         }
 
         protected void HandleDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var file = ((ListViewItem)sender).Content as FileInfo; //Casting back to the binded Track
+            var file = ((ListViewItem)sender).Content as FileInfoModel; //Casting back to the binded Track
 
-            if(file != null && file.Exists)
-            {
-                var records = ReadLines(file, 100);
-            }
+            //if(file != null && file.Exists)
+            //{
+            //    var records = ReadLines(file, 100);
+            //}
 
             this.FilePreviewWindow.IsOpen = true;
 

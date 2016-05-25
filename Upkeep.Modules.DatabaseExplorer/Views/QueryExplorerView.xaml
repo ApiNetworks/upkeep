@@ -10,51 +10,56 @@
 
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
+            <RowDefinition Height="*" MinHeight="100" />
+            <RowDefinition Height="5" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TabControl Padding="2" Grid.Row="0" Grid.ColumnSpan="2">
-            <TabControl.Resources>
-                <Style TargetType="TabItem" />
-            </TabControl.Resources>
-            <TabItem>
-                <TabItem.Header>
-                    <Label Content="SQL EDITOR" HorizontalAlignment="Stretch"/>
-                </TabItem.Header>
-                <Grid Margin="5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="100" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="170" />
-                    </Grid.RowDefinitions>
-                    <TextBox Grid.Row="0" Grid.Column="0" Name="QueryTextBox" 
+
+        <DockPanel Grid.Row="0" VerticalAlignment="Top" Margin="0,10,0,0">
+            <TabControl Padding="2">
+                <TabControl.Resources>
+                    <Style TargetType="TabItem" />
+                </TabControl.Resources>
+                <TabItem>
+                    <TabItem.Header>
+                        <Label Content="SQL EDITOR" HorizontalAlignment="Stretch"/>
+                    </TabItem.Header>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Grid.Column="0" Name="QueryTextBox"
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch"
                 AcceptsReturn="True" 
                 AcceptsTab="True"
                 Margin="5" 
                 TextWrapping="Wrap" 
-                MinLines="1" 
-                MaxLines="10" 
-                VerticalScrollBarVisibility="Auto"
+                MinLines="25" 
+                 VerticalScrollBarVisibility="Auto"
                 Text="{Binding QueryString}">
-                    </TextBox>
-                    <Button Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Content="Run Query" Width="90" Height="25" Margin="5" Command="{Binding Path=ExecuteQueryCommand}" CommandParameter="RunQuery"/>
-                    <Button Grid.Row="0" Grid.Column="1" Content="Save Snippet" Width="90" Height="25" Margin="5" Command="{Binding Path=ExecuteQueryCommand}" CommandParameter="SaveQuery"/>
-                </Grid>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <Label Content="SQL SNIPPETS" HorizontalAlignment="Stretch"/>
-                </TabItem.Header>
-                <Grid Margin="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="170" />
-                    </Grid.RowDefinitions>
-                    <DataGrid Name="SqlSnippetGrid" AutoGenerateColumns="False" 
-                            ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        </TextBox>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0"  VerticalAlignment="Top" Content="Run Query" Width="90" Height="25" Margin="5" Command="{Binding Path=ExecuteQueryCommand}" CommandParameter="RunQuery"/>
+                            <Button Grid.Row="1" Content="Save Snippet" Width="90" Height="25" Margin="5" Command="{Binding Path=ExecuteQueryCommand}" CommandParameter="SaveQuery"/>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Label Content="SQL SNIPPETS" HorizontalAlignment="Stretch"/>
+                    </TabItem.Header>
+                        <Grid Margin="5">
+                             <DataGrid Name="SqlSnippetGrid" AutoGenerateColumns="False" 
+                            ScrollViewer.VerticalScrollBarVisibility="Visible"
                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                             ItemsSource="{Binding Path=SqlSnippets}" 
                             SelectionMode="Single"
@@ -62,26 +67,30 @@
                             SelectedItem="{Binding SelectedSnippet}" 
                               IsReadOnly="True"
                             c:Commands.DataGridDoubleClickCommand="{Binding DataGridDoubleClick}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Description" Binding="{Binding Name}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </TabItem>
-        </TabControl>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Description" Binding="{Binding Name}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+
+        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
         <DataGrid AutoGenerateColumns="False" 
-                  Grid.Row="1" Grid.ColumnSpan="2" Name="QueryTable" 
+                  Grid.Row="2" Grid.ColumnSpan="2" Name="QueryTable" 
                   ItemsSource="{Binding Path=QueryDataTable}" 
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   c:DataGridColumnsBehavior.BindableColumns="{Binding ColumnCollection}" >
-            <DataGrid.RowStyle>
+            <!--<DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
                     <Setter Property="FontSize" Value="11"/>
                     <Setter Property="FontWeight" Value="Light"/>
                 </Style>
-            </DataGrid.RowStyle>
+            </DataGrid.RowStyle>-->
         </DataGrid>
+        
     </Grid>
 </UserControl>

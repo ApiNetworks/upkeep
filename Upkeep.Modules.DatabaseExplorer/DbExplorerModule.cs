@@ -28,6 +28,11 @@ namespace Upkeep.Modules.DatabaseExplorer
             queryRegion.Add(queryView, typeof(QueryExplorerView).FullName);
             queryRegion.Activate(queryView);
 
+            IRegion databaseRegion = RegionManager.Regions[Upkeep.Shell.Infrastructure.Constatnts.RegionNames.DatabaseRegionName];
+            var localdbView = UnityContainer.Resolve<Views.LocalDbManagerView>();
+            databaseRegion.Add(localdbView, typeof(LocalDbManagerView).FullName);
+            databaseRegion.Activate(localdbView);
+
             //RegionManager.RegisterViewWithRegion(Upkeep.Shell.Infrastructure.Constatnts.RegionNames.TabRegionName, typeof(Views.TableExplorerView));
             //RegionManager.Regions["WorkspaceRegion"].Add(new Views.TableExplorerView(), "TableExplorerView");
 

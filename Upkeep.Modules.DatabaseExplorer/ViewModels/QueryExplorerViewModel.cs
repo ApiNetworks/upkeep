@@ -25,7 +25,6 @@ namespace Upkeep.Modules.DatabaseExplorer.ViewModels
             this.ExecuteQueryCommand = new DelegateCommand<object>(this.OnExecuteQuery);
             this.DataGridDoubleClick = new DelegateCommand<object>(this.OnDataGridDoubleClick);
             PopulateSqlSnippets();
-            OnExecuteQuery(null);
         }
 
         private string _queryString;
@@ -74,12 +73,11 @@ namespace Upkeep.Modules.DatabaseExplorer.ViewModels
         public ICommand ExecuteQueryCommand { get; private set; }
         private void OnExecuteQuery(object arg)
         {
-            if (String.IsNullOrEmpty(QueryString))
-                QueryString = "select top 10 * from doctors";
-
-            //Initialize the view source and set the source to your observable collection
-            List<dynamic> result = QueryHelper.ExecuteDynamicQuery(QueryString);
-            PopulateDataTable(result);
+            if (!String.IsNullOrEmpty(QueryString))
+            {
+                List<dynamic> result = QueryHelper.ExecuteDynamicQuery(QueryString);
+                PopulateDataTable(result);
+            }
         }
 
         public ICommand DataGridDoubleClick { get; private set; }
@@ -88,8 +86,15 @@ namespace Upkeep.Modules.DatabaseExplorer.ViewModels
             if (SelectedSnippet != null)
                 QueryString = SelectedSnippet.Sql;
 
-            List<dynamic> result = QueryHelper.ExecuteDynamicQuery(QueryString);
-            PopulateDataTable(result);
+            try
+            {
+                List<dynamic> result = QueryHelper.ExecuteDynamicQuery(QueryString);
+                PopulateDataTable(result);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
         }
 
         private SqlSnippet _selectedSnippet;

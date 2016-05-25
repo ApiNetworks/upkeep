@@ -237,7 +237,9 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Database">
-                    <Grid Style="{StaticResource tabGrids}"/>
+                    <Grid Style="{StaticResource tabGrids}" >
+                        <ContentControl Name="DatabaseRegionContentControl" prism:RegionManager.RegionName="DatabaseRegion" />
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Queries">
                     <Grid Style="{StaticResource tabGrids}" >

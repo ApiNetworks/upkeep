@@ -67,6 +67,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -82,14 +83,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbExplorerModule.cs" />
+    <Compile Include="Models\SqlConnectionInfo.cs" />
     <Compile Include="Models\SqlLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SqlSnippets.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SqlSnippets.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Behaviours\ClickBehavior.cs" />
     <Compile Include="ViewModels\DataGridColumnBehaviour.cs" />
     <Compile Include="ViewModels\GenericObject.cs" />
     <Compile Include="ViewModels\GenericProperty.cs" />
+    <Compile Include="ViewModels\LocalDbManagerViewModel.cs" />
     <Compile Include="ViewModels\QueryExplorerViewModel.cs" />
     <Compile Include="Models\SqlSnippet.cs" />
     <Compile Include="ViewModels\TableExplorerViewModel.cs" />
+    <Compile Include="Views\LocalDbManagerView.xaml.cs">
+      <DependentUpon>LocalDbManagerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QueryExplorerView.xaml.cs">
       <DependentUpon>QueryExplorerView.xaml</DependentUpon>
     </Compile>
@@ -128,6 +145,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\LocalDbManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\QueryExplorerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,7 +158,19 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlSnippets.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SqlSnippets.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Snippets\sqlsnippets.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)Upkeep.Shell\bin\Debug\Modules\$(TargetName).dll"

@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upkeep.Modules.FileExplorer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upkeep.Modules.DatabaseExplorer", "Upkeep.Modules.DatabaseExplorer\Upkeep.Modules.DatabaseExplorer.csproj", "{7E50BFE8-22AE-43B5-BD1A-F3C42E3099A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxDM.Load-Data", "..\RxDM\RxDM.Load-Data\RxDM.Load-Data.csproj", "{5EEF2A74-0724-44E6-8A4D-949CAC47116F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +116,12 @@ Global
 		{7E50BFE8-22AE-43B5-BD1A-F3C42E3099A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E50BFE8-22AE-43B5-BD1A-F3C42E3099A5}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
 		{7E50BFE8-22AE-43B5-BD1A-F3C42E3099A5}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
+		{5EEF2A74-0724-44E6-8A4D-949CAC47116F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EEF2A74-0724-44E6-8A4D-949CAC47116F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EEF2A74-0724-44E6-8A4D-949CAC47116F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EEF2A74-0724-44E6-8A4D-949CAC47116F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EEF2A74-0724-44E6-8A4D-949CAC47116F}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{5EEF2A74-0724-44E6-8A4D-949CAC47116F}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

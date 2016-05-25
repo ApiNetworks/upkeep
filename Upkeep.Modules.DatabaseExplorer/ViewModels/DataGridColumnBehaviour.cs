@@ -88,8 +88,7 @@ namespace Upkeep.Modules.DatabaseExplorer.ViewModels
     public class Behaviours
     {
         public static DependencyProperty DoubleClickCommandProperty =
-           DependencyProperty.RegisterAttached("DoubleClickCommand", typeof(ICommand), typeof(Behaviours),
-                                               new PropertyMetadata(DoubleClick_PropertyChanged));
+           DependencyProperty.RegisterAttached("DoubleClickCommand", typeof(ICommand), typeof(Behaviours), new PropertyMetadata(DoubleClick_PropertyChanged));
 
         public static void SetDoubleClickCommand(UIElement element, ICommand value)
         {
@@ -131,9 +130,7 @@ namespace Upkeep.Modules.DatabaseExplorer.ViewModels
 
     public static class Commands
     {
-        public static readonly DependencyProperty DataGridDoubleClickProperty =
-          DependencyProperty.RegisterAttached("DataGridDoubleClickCommand", typeof(ICommand), typeof(Commands),
-                            new PropertyMetadata(new PropertyChangedCallback(AttachOrRemoveDataGridDoubleClickEvent)));
+        public static readonly DependencyProperty DataGridDoubleClickProperty = DependencyProperty.RegisterAttached("DataGridDoubleClickCommand", typeof(ICommand), typeof(Commands), new PropertyMetadata(new PropertyChangedCallback(AttachOrRemoveDataGridDoubleClickEvent)));
 
         public static ICommand GetDataGridDoubleClickCommand(DependencyObject obj)
         {

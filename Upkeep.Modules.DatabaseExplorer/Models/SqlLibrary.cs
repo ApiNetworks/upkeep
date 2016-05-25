@@ -10,19 +10,30 @@ namespace Upkeep.Modules.DatabaseExplorer.Models
     {
         public SqlLibrary()
         {
-            SqlSnippets = GetSnippets();
+            SqlSnippets = new List<SqlSnippet>();
+            LoadSnippets();
+            LoadResources();
         }
 
         public List<SqlSnippet> SqlSnippets { get; set; }
 
-        private List<SqlSnippet> GetSnippets()
+        private void LoadSnippets()
         {
-            List<SqlSnippet> snippets = new List<SqlSnippet>();
-            snippets.Add(new SqlSnippet { Name = "Select top 10 doctors", Sql = "SELECT TOP 10 * FROM DOCTORS" });
-            snippets.Add(new SqlSnippet { Name = "Select top 10 patients", Sql = "SELECT TOP 10 * FROM PATIENTS" });
-            snippets.Add(new SqlSnippet { Name = "Select top 10 perscriptions", Sql = "SELECT TOP 10 * FROM PRESCRIPTIONS" });
-            snippets.Add(new SqlSnippet { Name = "Select top 10 stores", Sql = "SELECT TOP 10 * FROM STORES" });
-            return snippets;
+            SqlSnippets.Add(new SqlSnippet { Name = "Select Database Table Names ", Sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='RxDMDb' AND TABLE_NAME NOT LIKE '%MigrationHistory%'" });
+        }
+
+        private void LoadResources()
+        {
+            string[] snippetLine = Properties.Resources.sqlsnippets.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string snippet in snippetLine)
+            {
+                string[] splitLine = snippet.Split('\t');
+                if (splitLine.Length == 2 && !String.IsNullOrEmpty(splitLine[0].ToString()) && !String.IsNullOrEmpty(splitLine[1].ToString()))
+                {
+                    var snip = new SqlSnippet { Name= splitLine[0].ToString().Trim('\"'), Sql= splitLine[1].ToString().Trim('\"') };
+                    SqlSnippets.Add(snip);
+                }
+            }
         }
     }
 }

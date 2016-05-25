@@ -14,6 +14,7 @@
     <UserControl.Resources>
         <Style x:Key="itemstyle" TargetType="{x:Type ListViewItem}">
             <EventSetter Event="MouseDoubleClick" Handler="HandleDoubleClick" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         </Style>
     </UserControl.Resources>
     
@@ -68,16 +69,43 @@
 
         <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
-        <ListView Name="FileList" Grid.Row="2" ItemContainerStyle="{StaticResource itemstyle}">
+        <Controls:AutoScrollingListView x:Name="FileList" Grid.Row="2" ItemsSource="{Binding SelectedFiles}" ItemContainerStyle="{StaticResource itemstyle}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Directory}" Header="Folder Name"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="File Name"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Extension}" Header="File Extension"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Length}" Header="Size"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Directory}" Header="Folder Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="File Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Extension}" Header="File Extension"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Length}" Header="Size"/>
+                    <GridViewColumn Width="140" Header="Progress">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ProgressBar MinWidth="100" Maximum="100" HorizontalAlignment="Stretch" Value="{Binding Path=CurrentProgress}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=DisplayStatus}" Width="100" Header="Status"/>
                 </GridView>
             </ListView.View>
-        </ListView>
+        </Controls:AutoScrollingListView>
+        
+        <!--<ListView Name="FileList" Grid.Row="2" ItemsSource="{Binding SelectedFiles}" ItemContainerStyle="{StaticResource itemstyle}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Directory}" Header="Folder Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="File Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Extension}" Header="File Extension"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Length}" Header="Size"/>
+                    <GridViewColumn Width="140" Header="Progress">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ProgressBar MinWidth="100" Maximum="100" HorizontalAlignment="Stretch" Value="{Binding Path=CurrentProgress}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=DisplayStatus}" Width="100" Header="Status"/>
+                </GridView>
+            </ListView.View>
+        </ListView>-->
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2">
             <Button Name="Btn_LoadFiles" Click="Click_LoadFiles" VerticalAlignment="Center" IsEnabled="False" Margin="3">Import Files</Button>

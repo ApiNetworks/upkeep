@@ -1,0 +1,38 @@
+Count Store Records in AdditionalMessages	select count(1) as TotalRecords, [FolderName] from [dbo].AdditionalMessages group by [FolderName]
+Count Store Records in Cardholders	select count(1) as TotalRecords, [FolderName] from [dbo].Cardholders group by [FolderName]
+Count Store Records in CompoundIngredients	select count(1) as TotalRecords, [FolderName] from [dbo].CompoundIngredients group by [FolderName]
+Count Store Records in Compounds	select count(1) as TotalRecords, [FolderName] from [dbo].Compounds group by [FolderName]
+Count Store Records in Doctors	select count(1) as TotalRecords, [FolderName] from [dbo].Doctors group by [FolderName]
+Count Store Records in Patients	select count(1) as TotalRecords, [FolderName] from [dbo].Patients group by [FolderName]
+Count Store Records in Prescriptions	select count(1) as TotalRecords, [FolderName] from [dbo].Prescriptions group by [FolderName]
+Count Store Records in RxSigs	select count(1) as TotalRecords, [FolderName] from [dbo].RxSigs group by [FolderName]
+Count Store Records in SequenceNumbers	select count(1) as TotalRecords, [FolderName] from [dbo].SequenceNumbers group by [FolderName]
+Count Store Records in SplitBills	select count(1) as TotalRecords, [FolderName] from [dbo].SplitBills group by [FolderName]
+Count Store Records in Stores	select count(1) as TotalRecords, [FolderName] from [dbo].Stores group by [FolderName]
+Count Store Records in ThirdPartyLinks	select count(1) as TotalRecords, [FolderName] from [dbo].ThirdPartyLinks group by [FolderName]
+Count Store Records in Transactions	select count(1) as TotalRecords, [FolderName] from [dbo].Transactions group by [FolderName]
+Last 100 Records in AdditionalMessages	select top 100 * from [dbo].AdditionalMessages order by id desc
+Last 100 Records in Cardholders	select top 100 * from [dbo].Cardholders order by id desc
+Last 100 Records in CompoundIngredients	select top 100 * from [dbo].CompoundIngredients order by id desc
+Last 100 Records in Compounds	select top 100 * from [dbo].Compounds order by id desc
+Last 100 Records in Doctors	select top 100 * from [dbo].Doctors order by id desc
+Last 100 Records in Patients	select top 100 * from [dbo].Patients order by id desc
+Last 100 Records in Prescriptions	select top 100 * from [dbo].Prescriptions order by id desc
+Last 100 Records in RxSigs	select top 100 * from [dbo].RxSigs order by id desc
+Last 100 Records in SequenceNumbers	select top 100 * from [dbo].SequenceNumbers order by id desc
+Last 100 Records in SplitBills	select top 100 * from [dbo].SplitBills order by id desc
+Last 100 Records in ThirdPartyLinks	select top 100 * from [dbo].ThirdPartyLinks order by id desc
+Last 100 Records in Transactions	select top 100 * from [dbo].Transactions order by id desc
+Top 10 Records in AdditionalMessages	select top 10 * from [dbo].AdditionalMessages
+Top 10 Records in Cardholders	select top 10 * from [dbo].Cardholders
+Top 10 Records in CompoundIngredients	select top 10 * from [dbo].CompoundIngredients
+Top 10 Records in Compounds	select top 10 * from [dbo].Compounds
+Top 10 Records in Doctors	select top 10 * from [dbo].Doctors
+Top 10 Records in Patients	select top 10 * from [dbo].Patients
+Top 10 Records in Prescriptions	select top 10 * from [dbo].Prescriptions
+Top 10 Records in RxSigs	select top 10 * from [dbo].RxSigs
+Top 10 Records in SequenceNumbers	select top 10 * from [dbo].SequenceNumbers
+Top 10 Records in SplitBills	select top 10 * from [dbo].SplitBills
+Top 10 Records in Stores	select top 10 * from [dbo].Stores
+Top 10 Records in ThirdPartyLinks	select top 10 * from [dbo].ThirdPartyLinks
+Top 10 Records in Transactions	select top 10 * from [dbo].Transactions
