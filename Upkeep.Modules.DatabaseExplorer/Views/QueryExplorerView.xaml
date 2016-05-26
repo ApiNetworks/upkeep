@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Upkeep.Modules.DatabaseExplorer.Views"
-             xmlns:c="clr-namespace:Upkeep.Modules.DatabaseExplorer.ViewModels"
+             xmlns:c="clr-namespace:Upkeep.Modules.DatabaseExplorer.Behaviours"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 

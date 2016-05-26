@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,53 @@ namespace Upkeep.Modules.DatabaseExplorer.ViewModels
         public LocalDbManagerViewModel()
         {
             this.ListItemDoubleClickCommand = new DelegateCommand<object>(this.OnGetDatabaseInformation);
+
+            this.BackupDatabaseCommand = DelegateCommand.FromAsyncHandler(BackupDatabaseAsync);
+            this.RestoreDatabaseCommand = DelegateCommand.FromAsyncHandler(RestoreDatabaseAsync);
+
+            this.IsDatabaseAvailable = false;
+
             DatabaseConnections = new ObservableCollection<SqlConnectionInfo>();
             PopulateConnectionStrings();
+        }
+
+        #region Commands
+
+        private bool _isDatabaseAvailable;
+        public bool IsDatabaseAvailable
+        {
+            get { return _isDatabaseAvailable; }
+            set
+            {
+                SetProperty(ref this._isDatabaseAvailable, value);
+                BackupDatabaseCommand.RaiseCanExecuteChanged();
+                RestoreDatabaseCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private bool CanInteractWithDatabase()
+        {
+            return IsDatabaseAvailable;
+        }
+
+        private async Task RestoreDatabaseAsync()
+        {
+            if (!String.IsNullOrEmpty(DatabaseFullBackupPath) && File.Exists(DatabaseFullBackupPath))
+            {
+                IsDatabaseAvailable = false;
+                await RestoreDatabase(DatabaseFullBackupPath);
+                IsDatabaseAvailable = true;
+            }
+        }
+
+        private async Task BackupDatabaseAsync()
+        {
+            if (!String.IsNullOrEmpty(DatabaseFullBackupPath))
+            {
+                IsDatabaseAvailable = false;
+                await BackupDatabase(DatabaseFullBackupPath);
+                IsDatabaseAvailable = true;
+            }
         }
 
         private void OnGetDatabaseInformation(object obj)
@@ -33,8 +79,27 @@ namespace Upkeep.Modules.DatabaseExplorer.ViewModels
             if (sqlInfo != null)
             {
                 SelectedDatabaseConnection = sqlInfo.Content as SqlConnectionInfo;
+                DatabaseFullBackupPath = SelectedDatabaseConnection.DefaultBackupLocation;
+                IsDatabaseAvailable = true;
             }
         }
+
+        public ICommand ListItemDoubleClickCommand
+        {
+            get; private set;
+        }
+
+        public DelegateCommand BackupDatabaseCommand
+        {
+            get; private set;
+        }
+
+        public DelegateCommand RestoreDatabaseCommand
+        {
+            get; private set;
+        }
+
+        #endregion
 
         private SqlConnectionInfo _selectedDatabaseConnection;
         public SqlConnectionInfo SelectedDatabaseConnection
@@ -43,30 +108,21 @@ namespace Upkeep.Modules.DatabaseExplorer.ViewModels
             set { SetProperty(ref this._selectedDatabaseConnection, value); }
         }
 
-        public ICommand ListItemDoubleClickCommand
+        private string _databaseFullBackupPath;
+        public string DatabaseFullBackupPath
         {
-            get; private set;
+            get { return _databaseFullBackupPath; }
+            set { SetProperty(ref this._databaseFullBackupPath, value); }
         }
 
-        public void BackupDatabase(string filePath)
+        public async Task<bool> BackupDatabase(string filePath)
         {
-            //using (TVend2014Entities dbEntities = new TVend2014Entities(BaseData.ConnectionString))
-            //{
-            //    string backupQuery = @"BACKUP DATABASE ""{0}"" TO DISK = N'{1}'";
-            //    backupQuery = string.Format(backupQuery, "full databsase file path like C:\tempDb.mdf", filePath);
-            //    dbEntities.Database.SqlQuery<object>(backupQuery).ToList().FirstOrDefault();
-            //}
+            return await QueryHelper.TryBackupDatabaseAsync(filePath);
         }
 
-        public void RestoreDatabase(string filePath)
+        public async Task<bool> RestoreDatabase(string filePath)
         {
-            //using (TVend2014Entities dbEntities = new TVend2014Entities(BaseData.ConnectionString))
-            //{
-            //    string restoreQuery = @"USE [Master]; ALTER DATABASE ""{0}"" SET SINGLE_USER WITH ROLLBACK IMMEDIATE; RESTORE DATABASE ""{0}"" FROM DISK='{1}' WITH REPLACE; ALTER DATABASE ""{0}"" SET MULTI_USER;";
-            //    restoreQuery = string.Format(restoreQuery, "full db file path", filePath);
-            //    var list = dbEntities.Database.SqlQuery<object>(restoreQuery).ToList();
-            //    var resut = list.FirstOrDefault();
-            //}
+            return await QueryHelper.TryRestoreDatabaseAsync(filePath);
         }
 
         public void PopulateConnectionStrings()
@@ -95,7 +151,7 @@ namespace Upkeep.Modules.DatabaseExplorer.ViewModels
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     // TODO: Log this
                 }

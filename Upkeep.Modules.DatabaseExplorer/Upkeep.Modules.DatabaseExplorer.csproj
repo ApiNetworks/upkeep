@@ -97,7 +97,7 @@
       <DependentUpon>SqlSnippets.resx</DependentUpon>
     </Compile>
     <Compile Include="Behaviours\ClickBehavior.cs" />
-    <Compile Include="ViewModels\DataGridColumnBehaviour.cs" />
+    <Compile Include="Behaviours\DataGridColumnBehaviour.cs" />
     <Compile Include="ViewModels\GenericObject.cs" />
     <Compile Include="ViewModels\GenericProperty.cs" />
     <Compile Include="ViewModels\LocalDbManagerViewModel.cs" />

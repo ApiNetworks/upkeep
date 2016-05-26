@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Upkeep.Modules.DatabaseExplorer.ViewModels
+namespace Upkeep.Modules.DatabaseExplorer.Behaviours
 {
     public class DataGridColumnsBehavior
     {
